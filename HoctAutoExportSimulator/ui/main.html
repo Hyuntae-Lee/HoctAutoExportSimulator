@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="stylesheet" href="main.css">
+    <script src="main.js"></script>
+</head>
+
+<body>
+    <!-- patient(exit) button -->
+    <button id="btnExport" onclick="runExport()">Export</button>
+
+    <!-- script -->
+    <script>
+        var runExport = function() {
+            var mode = 2; // 0: fundus, 1: oct, 2: octFundus
+            var dir = 'D:/TTT';
+            var side = 0; // 0: OD, 1: OS
+            var patternName = 'Macular 3D';
+            external.OnBtnExportClicked(mode, dir, side, patternName);
+        }
+    </script>
+</body>
+</html>
