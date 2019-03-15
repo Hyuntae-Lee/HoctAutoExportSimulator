@@ -1,0 +1,10 @@
+body {
+    background-color: black;
+    color:white
+}
+
+.infoInput {
+    position: absolute;
+    left: 200px;
+    width: 400px
+}

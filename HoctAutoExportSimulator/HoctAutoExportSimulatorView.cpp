@@ -187,7 +187,7 @@ auto CHoctAutoExportSimulatorView::composeJsonEMNET(Patient patient, std::wstrin
 	// - patient id
 	auto strPatientId = patient.getPatientId();
 	jsonValue[L"internalPatientId"] = web::json::value::string((utility::string_t)strPatientId, false);
-	// device id
+	// - device id
 	auto szSN = HctMainUtil::getSerialNumber();
 	std::wstring strSN = CT2CW(szSN);
 	jsonValue[L"deviceId"] = web::json::value::string((utility::string_t)strSN, false);

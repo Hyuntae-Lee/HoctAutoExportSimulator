@@ -3,22 +3,98 @@
 
 <head>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <link rel="stylesheet" href="main.css">
-    <script src="main.js"></script>
+    <link rel="stylesheet" href="./main.css">
+    <script src="./main.js"></script>
 </head>
 
 <body>
-    <!-- patient(exit) button -->
-    <button id="btnExport" onclick="runExport()">Export</button>
+    <!-- patient info. -->
+    <form>
+        <b>Patient ID : </b><input class="infoInput" type="text" name="PatientID"><br>
+    </form>
+    <form>
+        <b>Device ID : </b> <input class="infoInput" type="text" name="DeviceID"><br>
+        </form>
+    <br>
+    <form>
+        <b>Name : </b><input class="infoInput" type="text" name="FirstName"><br>
+        <b>Name Affix : </b><input class="infoInput" type="text" name="MiddleName"><br>
+        <b>Last Name : </b><input class="infoInput" type="text" name="LastName">
+    </form>
+    <br>
+    <form>
+        <b>Gender : </b>
+        <input type="radio" name="0" value="male"> Male
+        <input type="radio" name="1" value="female"> Female
+    </form>
+    <form>
+        <b>Race : </b>
+        <input type="radio" name="asian" value="1"> Asian
+        <input type="radio" name="caucasian" value="2"> Caucasian
+        <input type="radio" name="latino" value="3"> Latino
+        <input type="radio" name="indian" value="5"> Indian
+        <input type="radio" name="arab" value="6"> Arab
+        <input type="radio" name="mixed" value="7"> Mixed
+    </form>
+    <br>
+    <form>
+        <b>Birth Date : </b>
+        <input type="date" name="birthDate">
+    </form>
+    <br>
+    <!-- measurement mode -->
+    <form>
+        <b>Measurement Mode : </b>
+        <input type="radio" id="measFundus" name='measMode' value="0">
+        <label for="measFundus">Fundus</label>
+        <input type="radio" id="measOct" name='measMode' value="1">
+        <label for="measOct">Oct</label>
+        <input type="radio" id="measOctFundus" name='measMode' value="2">
+        <label for="measOctFundus">Oct + Fundus</label>
+    </form>
+    <form>
+        <b>Eye Side : </b>
+        <input type="radio" name="od" value="0">OD
+        <input type="radio" name="os" value="1">OS
+    </form>
+    <form>
+        <b>Scan Pattern : </b>
+        <select id='comboScanPattern'>
+            <option name="MacularLine" value="3">Macular Line</option>
+            <option name="MacularCross" value="4">Macular Cross</option>
+            <option name="MacularRadial" value="5">Macular Radial</option>
+            <option name="MacularRaster" value="6">Macular Raster</option>
+            <option name="Macular3D" value="8">Macular 3D</option>
+            <option name="DiscLine" value="11">Disc Line</option>
+            <option name="DiscRadial" value="12">Disc Radial</option>
+            <option name="DiscCircle" value="13">Disc Circle</option>
+            <option name="Disc3D" value="15">Disc 3D</option>
+            <option name="AnteriorLine" value="18">Anterior Line</option>
+            <option name="AnteriorRadial" value="19">Anterior Radial</option>
+            <option name="MacularDisc" value="22">Macular Wide</option>
+        </select>
+    </form>
+    <br>
+    
+    <!-- output path -->
+    <div>
+        <b>Output Directory : </b>
+        <input id='pathInput' type="file" class="infoInput" webkitdirectory directory multiple/>
+    </div>
+
+    <!-- export -->
+    <div style="text-align:right">
+        <button id="btnExport" onclick="runExport()" style="width: 100px; height: 30px">Export</button>
+    </div>
 
     <!-- script -->
     <script>
         var runExport = function() {
-            var mode = 2; // 0: fundus, 1: oct, 2: octFundus
-            var dir = 'D:/TTT';
+            var measMode = document.getElementsByName('measMode');
+            var pathInput = document.getElementById('pathInput');
             var side = 0; // 0: OD, 1: OS
             var patternName = 'Macular 3D';
-            external.OnBtnExportClicked(mode, dir, side, patternName);
+            external.OnBtnExportClicked(measMode.value, pathInput, side, patternName);
         }
     </script>
 </body>
